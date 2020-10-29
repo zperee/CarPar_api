@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 import MasterRouter from './routers/MasterRouter';
 import ErrorHandler from "./models/ErrorHandler";
+import connectDB from "./config/database";
 
 // load the environment variables from the .env file
 dotenv.config({
@@ -13,6 +14,9 @@ class Server {
   public app = express();
   public router = MasterRouter;
 }
+
+// Connect to MongoDB
+connectDB();
 
 // initialize server app
 const server = new Server();
