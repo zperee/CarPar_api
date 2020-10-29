@@ -1,7 +1,9 @@
 import { NextFunction, Request, Response, Router } from 'express';
+import ParkingController from '../../controllers/ParkingController';
 
 class ParkingRouter {
   private _router = Router();
+  private _controller = ParkingController;
 
   get router() {
     return this._router;
@@ -18,7 +20,8 @@ class ParkingRouter {
     this._router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
       try {
         const id = req.params.id;
-        res.status(200).json("");
+        const result = await this._controller.loadParkingForCity(id);
+        res.status(200).json(result);
       }
       catch (error) {
         next(error);
