@@ -1,7 +1,9 @@
 import { NextFunction, Request, Response, Router } from 'express';
+import CityController from '../../controllers/CityController';
 
 class CityRouter {
   private _router = Router();
+  private _controller = CityController;
 
   get router() {
     return this._router;
@@ -17,7 +19,8 @@ class CityRouter {
   private _configure() {
     this._router.get('/', async (req: Request, res: Response, next: NextFunction) => {
       try {
-        res.status(200).json("");
+        const result = await this._controller.loadAllCities();
+        res.status(200).json(result);
       }
       catch (error) {
         next(error);
@@ -27,7 +30,8 @@ class CityRouter {
     this._router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
       try {
         const id = req.params.id;
-        res.status(200).json("");
+        const result = await this._controller.loadSpecificCity(id);
+        res.status(200).json(result);
       }
       catch (error) {
         next(error);
