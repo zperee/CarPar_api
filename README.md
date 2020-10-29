@@ -9,7 +9,7 @@ The project was part of the subject Web development of the bachelor digital busi
 * Heroku :gear:
 
 ## Endpoints
-The API is located under following url [API](https://carparapi.herokuapp.com/).
+The API is located under following url [API](https://carpar-api.herokuapp.com).
 
 ## Commands 
 Start api during local development: `npm run dev`
