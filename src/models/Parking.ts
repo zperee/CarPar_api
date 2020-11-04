@@ -5,6 +5,7 @@ export interface IParking extends Document {
     name: string;
     free: number | undefined;
     city: string;
+    apiId: string
 }
 
 const parkingSchema: Schema = new Schema({
