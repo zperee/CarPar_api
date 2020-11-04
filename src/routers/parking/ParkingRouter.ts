@@ -20,7 +20,7 @@ class ParkingRouter {
     this._router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
       try {
         const id = req.params.id;
-        const result = await this._controller.loadParkingForCity(id);
+        const result = await this._controller.loadParkingById(id);
         res.status(200).json(result);
       }
       catch (error) {

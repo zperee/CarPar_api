@@ -10,8 +10,8 @@ class CityController {
     return City.find()
   }
 
-  async loadSpecificCity(id: String) {
-    return City.findById(id);
+  async loadParkingForCity(id: string) {
+    return City.findById(id).populate("parkings");
   }
 
 }
