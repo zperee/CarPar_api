@@ -27,11 +27,28 @@ class CityRouter {
       }
     });
 
-    this._router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
+    this._router.get('/id/:id', async (req: Request, res: Response, next: NextFunction) => {
       try {
         const id = req.params.id;
         const result = await this._controller.loadParkingForCity(id);
         res.status(200).json(result);
+      }
+      catch (error) {
+        next(error);
+      }
+    });
+    this._router.get('/geo', async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const lat = parseFloat(<string>req.query.lat);
+        const lon = parseFloat(<string>req.query.lon);
+        console.log(lat);
+        console.log(lon);
+        if (lat && lon) {
+          const result = await this._controller.loadParkingForNearestCity(lat, lon);
+          res.status(200).json(result);
+        } else {
+          res.status(400);
+        }
       }
       catch (error) {
         next(error);

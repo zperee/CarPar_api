@@ -16,7 +16,7 @@ const parkingSchema: Schema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'City'
     },
-}, {timestamps: { updatedAt: 'updatedAt' }});
+}, {timestamps: true});
 
 const Parking: Model<IParking> = model("Parking", parkingSchema, "parkings");
 

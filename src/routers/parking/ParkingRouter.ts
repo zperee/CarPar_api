@@ -17,7 +17,7 @@ class ParkingRouter {
    * Connect routes to their matching controller endpoints.
    */
   private _configure() {
-    this._router.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
+    this._router.get('/id/:id', async (req: Request, res: Response, next: NextFunction) => {
       try {
         const id = req.params.id;
         const result = await this._controller.loadParkingById(id);
