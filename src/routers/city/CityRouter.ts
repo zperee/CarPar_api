@@ -41,11 +41,30 @@ class CityRouter {
       try {
         const lat = parseFloat(<string>req.query.lat);
         const lon = parseFloat(<string>req.query.lon);
-        console.log(lat);
-        console.log(lon);
         if (lat && lon) {
           const result = await this._controller.loadParkingForNearestCity(lat, lon);
           res.status(200).json(result);
+        } else {
+          res.status(400);
+        }
+      }
+      catch (error) {
+        next(error);
+      }
+    });
+    this._router.get('/search', async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const q = req.query.q
+        if (q) {
+          this._controller.loadParkingForAddress(q).then(
+              result => {
+                if (result) {
+                  res.status(200).json(result);
+                } else {
+                  res.status(404).json(result);
+                }
+              }
+          )
         } else {
           res.status(400);
         }
